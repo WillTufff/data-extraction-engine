@@ -1,0 +1,109 @@
+{
+  "description": "Hand-transcribed live scoreboard, map 3 (Control), t=3300s. The stat column reads OVLD here, the third of the three schemas. Right slot 1 (SHOTZZY) is spectated on a green bar. The mode strip does not name the mode on this frame -- it reads '2026 CDL CHAMPS - GRAND FINALS / FIRST HALF' -- which is why the stat label, not the mode strip, is what the row schema is taken from.",
+  "timestamp": 3300,
+  "stat_label": "OVLD",
+  "mode": null,
+  "score": [
+    0,
+    0
+  ],
+  "clock": "3:31",
+  "maps": [
+    1,
+    1
+  ],
+  "rotation": null,
+  "substrip": "FIRST HALF",
+  "lives": null,
+  "best_of": 9,
+  "rows": [
+    {
+      "side": "left",
+      "slot": 0,
+      "number": "1",
+      "name": "ABUZAH",
+      "kd": "5/2",
+      "strk": "3",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 1,
+      "number": "2",
+      "name": "DRAZAH",
+      "kd": "1/4",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 2,
+      "number": "3",
+      "name": "04",
+      "kd": "2/3",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 3,
+      "number": "4",
+      "name": "SIMP",
+      "kd": "5/2",
+      "strk": "1",
+      "stat": "0",
+      "gutter": "carrier",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 0,
+      "number": "5",
+      "name": "HUKE",
+      "kd": "4/3",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "skull",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 1,
+      "number": "6",
+      "name": "SHOTZZY",
+      "kd": "2/4",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": true
+    },
+    {
+      "side": "right",
+      "slot": 2,
+      "number": "7",
+      "name": "MERCULES",
+      "kd": "4/3",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 3,
+      "number": "8",
+      "name": "DASHY",
+      "kd": "0/3",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "skull",
+      "spectated": false
+    }
+  ]
+}

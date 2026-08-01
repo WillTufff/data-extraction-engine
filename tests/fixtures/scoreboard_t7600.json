@@ -1,0 +1,109 @@
+{
+  "description": "Hand-transcribed live scoreboard, map 6 (Overload), t=7600s. Carries the OVLD stat schema, which no other build fixture has. Left slot 3 (SIMP) is both spectated and carrying the overload -- the one frame here where an inverted row also holds a gutter icon, which is the case a reader that treats the two as alternatives would get wrong. Gutter class names describe what the icon marks in that mode; the clustering in tools/cluster_scoreboard_icons.py is what settles the taxonomy.",
+  "timestamp": 7600,
+  "stat_label": "OVLD",
+  "mode": "CDL OVERLOAD",
+  "score": [
+    1,
+    0
+  ],
+  "clock": "3:43",
+  "maps": [
+    4,
+    1
+  ],
+  "rotation": null,
+  "substrip": "FIRST HALF",
+  "lives": null,
+  "best_of": 9,
+  "rows": [
+    {
+      "side": "left",
+      "slot": 0,
+      "number": "1",
+      "name": "ABUZAH",
+      "kd": "1/2",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 1,
+      "number": "2",
+      "name": "DRAZAH",
+      "kd": "3/2",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 2,
+      "number": "3",
+      "name": "04",
+      "kd": "4/3",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 3,
+      "number": "4",
+      "name": "SIMP",
+      "kd": "3/3",
+      "strk": "1",
+      "stat": "1",
+      "gutter": "carrier",
+      "spectated": true
+    },
+    {
+      "side": "right",
+      "slot": 0,
+      "number": "5",
+      "name": "HUKE",
+      "kd": "1/2",
+      "strk": "1",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 1,
+      "number": "6",
+      "name": "SHOTZZY",
+      "kd": "4/2",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 2,
+      "number": "7",
+      "name": "MERCULES",
+      "kd": "2/4",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 3,
+      "number": "8",
+      "name": "DASHY",
+      "kd": "3/3",
+      "strk": "0",
+      "stat": "0",
+      "gutter": "none",
+      "spectated": false
+    }
+  ]
+}

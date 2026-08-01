@@ -1,0 +1,248 @@
+[
+  {
+    "map": 1,
+    "t": 767.5,
+    "mode": "hardpoint",
+    "start": 756.0,
+    "end": 779.0,
+    "kd": {
+      "ABUZAH": {
+        "kills": 34,
+        "deaths": 29
+      },
+      "DRAZAH": {
+        "kills": 32,
+        "deaths": 32
+      },
+      "04": {
+        "kills": 28,
+        "deaths": 32
+      },
+      "SIMP": {
+        "kills": 31,
+        "deaths": 28
+      },
+      "HUKE": {
+        "kills": 26,
+        "deaths": 31
+      },
+      "SHOTZZY": {
+        "kills": 31,
+        "deaths": 32
+      },
+      "MERCULES": {
+        "kills": 34,
+        "deaths": 30
+      },
+      "DASHY": {
+        "kills": 29,
+        "deaths": 32
+      }
+    }
+  },
+  {
+    "map": 2,
+    "t": 2808.0,
+    "mode": "search_and_destroy",
+    "start": 2796.0,
+    "end": 2820.0,
+    "kd": {
+      "ABUZAH": {
+        "kills": 5,
+        "deaths": 5
+      },
+      "DRAZAH": {
+        "kills": 7,
+        "deaths": 9
+      },
+      "04": {
+        "kills": 12,
+        "deaths": 7
+      },
+      "SIMP": {
+        "kills": 8,
+        "deaths": 6
+      },
+      "HUKE": {
+        "kills": 3,
+        "deaths": 7
+      },
+      "SHOTZZY": {
+        "kills": 9,
+        "deaths": 10
+      },
+      "MERCULES": {
+        "kills": 12,
+        "deaths": 7
+      },
+      "DASHY": {
+        "kills": 1,
+        "deaths": 8
+      }
+    }
+  },
+  {
+    "map": 3,
+    "t": 3941.5,
+    "mode": "overload",
+    "start": 3927.0,
+    "end": 3956.0,
+    "kd": {
+      "ABUZAH": {
+        "kills": 42,
+        "deaths": 20
+      },
+      "DRAZAH": {
+        "kills": 32,
+        "deaths": 23
+      },
+      "04": {
+        "kills": 21,
+        "deaths": 25
+      },
+      "SIMP": {
+        "kills": 21,
+        "deaths": 25
+      },
+      "HUKE": {
+        "kills": 24,
+        "deaths": 26
+      },
+      "SHOTZZY": {
+        "kills": 23,
+        "deaths": 32
+      },
+      "MERCULES": {
+        "kills": 21,
+        "deaths": 30
+      },
+      "DASHY": {
+        "kills": 23,
+        "deaths": 28
+      }
+    }
+  },
+  {
+    "map": 4,
+    "t": 4917.5,
+    "mode": "hardpoint",
+    "start": 4902.0,
+    "end": 4933.0,
+    "kd": {
+      "ABUZAH": {
+        "kills": 31,
+        "deaths": 23
+      },
+      "DRAZAH": {
+        "kills": 39,
+        "deaths": 26
+      },
+      "04": {
+        "kills": 31,
+        "deaths": 23
+      },
+      "SIMP": {
+        "kills": 31,
+        "deaths": 25
+      },
+      "HUKE": {
+        "kills": 24,
+        "deaths": 33
+      },
+      "SHOTZZY": {
+        "kills": 22,
+        "deaths": 38
+      },
+      "MERCULES": {
+        "kills": 29,
+        "deaths": 32
+      },
+      "DASHY": {
+        "kills": 21,
+        "deaths": 29
+      }
+    }
+  },
+  {
+    "map": 5,
+    "t": 7351.5,
+    "mode": "search_and_destroy",
+    "start": 7342.0,
+    "end": 7361.0,
+    "kd": {
+      "ABUZAH": {
+        "kills": 8,
+        "deaths": 5
+      },
+      "DRAZAH": {
+        "kills": 7,
+        "deaths": 8
+      },
+      "04": {
+        "kills": 9,
+        "deaths": 5
+      },
+      "SIMP": {
+        "kills": 14,
+        "deaths": 6
+      },
+      "HUKE": {
+        "kills": 5,
+        "deaths": 8
+      },
+      "SHOTZZY": {
+        "kills": 8,
+        "deaths": 11
+      },
+      "MERCULES": {
+        "kills": 3,
+        "deaths": 11
+      },
+      "DASHY": {
+        "kills": 7,
+        "deaths": 8
+      }
+    }
+  },
+  {
+    "map": 6,
+    "t": 8234.0,
+    "mode": "overload",
+    "start": 8226.0,
+    "end": 8242.0,
+    "kd": {
+      "ABUZAH": {
+        "kills": 26,
+        "deaths": 21
+      },
+      "DRAZAH": {
+        "kills": 24,
+        "deaths": 25
+      },
+      "04": {
+        "kills": 31,
+        "deaths": 25
+      },
+      "SIMP": {
+        "kills": 16,
+        "deaths": 27
+      },
+      "HUKE": {
+        "kills": 22,
+        "deaths": 22
+      },
+      "SHOTZZY": {
+        "kills": 26,
+        "deaths": 26
+      },
+      "MERCULES": {
+        "kills": 22,
+        "deaths": 28
+      },
+      "DASHY": {
+        "kills": 27,
+        "deaths": 23
+      }
+    }
+  }
+]

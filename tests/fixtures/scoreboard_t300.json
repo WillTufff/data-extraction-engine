@@ -1,0 +1,109 @@
+{
+  "description": "Hand-transcribed live scoreboard, map 1 (Hardpoint), t=300s. The stat column reads TIME here. Left slot 2 (04) is the spectated row, drawn inverted as dark text on a white bar; left slot 3 (SIMP) carries a skull and right slot 1 (SHOTZZY) the overload chevron.",
+  "timestamp": 300,
+  "stat_label": "TIME",
+  "mode": "CDL HARDPOINT",
+  "score": [
+    118,
+    60
+  ],
+  "clock": "3:43",
+  "maps": [
+    0,
+    0
+  ],
+  "rotation": "0:25",
+  "substrip": null,
+  "lives": null,
+  "best_of": 9,
+  "rows": [
+    {
+      "side": "left",
+      "slot": 0,
+      "number": "1",
+      "name": "ABUZAH",
+      "kd": "17/9",
+      "strk": "0",
+      "stat": "1:07",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 1,
+      "number": "2",
+      "name": "DRAZAH",
+      "kd": "14/11",
+      "strk": "0",
+      "stat": "0:12",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "left",
+      "slot": 2,
+      "number": "3",
+      "name": "04",
+      "kd": "12/11",
+      "strk": "0",
+      "stat": "0:31",
+      "gutter": "none",
+      "spectated": true
+    },
+    {
+      "side": "left",
+      "slot": 3,
+      "number": "4",
+      "name": "SIMP",
+      "kd": "14/11",
+      "strk": "0",
+      "stat": "0:41",
+      "gutter": "skull",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 0,
+      "number": "5",
+      "name": "HUKE",
+      "kd": "9/13",
+      "strk": "1",
+      "stat": "0:17",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 1,
+      "number": "6",
+      "name": "SHOTZZY",
+      "kd": "13/15",
+      "strk": "0",
+      "stat": "0:11",
+      "gutter": "overload",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 2,
+      "number": "7",
+      "name": "MERCULES",
+      "kd": "8/15",
+      "strk": "1",
+      "stat": "0:25",
+      "gutter": "none",
+      "spectated": false
+    },
+    {
+      "side": "right",
+      "slot": 3,
+      "number": "8",
+      "name": "DASHY",
+      "kd": "12/14",
+      "strk": "0",
+      "stat": "0:37",
+      "gutter": "none",
+      "spectated": false
+    }
+  ]
+}

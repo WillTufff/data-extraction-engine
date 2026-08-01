@@ -1,0 +1,12 @@
+# broadcast footage, not ours to redistribute
+*.mp4
+*.mkv
+*.webm
+*.f[0-9][0-9][0-9].*
+
+data/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

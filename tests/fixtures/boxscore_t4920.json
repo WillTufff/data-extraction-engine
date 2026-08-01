@@ -1,0 +1,19 @@
+{
+  "description": "Ground-truth labelling of the post-map box score at t=4920s. Transcribed by eye from the source frame; this is the reference the atlas is built from and the parser is validated against.",
+  "timestamp": 4920,
+  "mode": "hardpoint",
+  "map": "SCAR",
+  "team_a": "FAZE VEGAS",
+  "team_b": "OPTIC TEXAS",
+  "final_score": [250, 194],
+  "rows": [
+    {"player_index": "1", "name": "ABUZAH",   "kills_deaths": "31/23", "assists": "10", "non_traded_kills": "22", "highest_streak": "6", "damage": "3500", "hill_time": "1:52", "average_hill_time": "0:10", "objective_kills": "10", "contested_hill_time": "0:12", "kills_per_hill": "2.81", "damage_per_hill": "318.18"},
+    {"player_index": "2", "name": "DRAZAH",   "kills_deaths": "39/26", "assists": "15", "non_traded_kills": "31", "highest_streak": "6", "damage": "4834", "hill_time": "0:24", "average_hill_time": "0:01", "objective_kills": "6",  "contested_hill_time": "0:05", "kills_per_hill": "3.45", "damage_per_hill": "433.45"},
+    {"player_index": "3", "name": "04",       "kills_deaths": "31/23", "assists": "14", "non_traded_kills": "27", "highest_streak": "5", "damage": "4188", "hill_time": "0:57", "average_hill_time": "0:05", "objective_kills": "7",  "contested_hill_time": "0:07", "kills_per_hill": "2.72", "damage_per_hill": "371.63"},
+    {"player_index": "4", "name": "SIMP",     "kills_deaths": "31/25", "assists": "9",  "non_traded_kills": "25", "highest_streak": "5", "damage": "3294", "hill_time": "1:16", "average_hill_time": "0:06", "objective_kills": "8",  "contested_hill_time": "0:05", "kills_per_hill": "2.81", "damage_per_hill": "296.36"},
+    {"player_index": "5", "name": "HUKE",     "kills_deaths": "24/33", "assists": "6",  "non_traded_kills": "15", "highest_streak": "4", "damage": "3043", "hill_time": "0:47", "average_hill_time": "0:04", "objective_kills": "6",  "contested_hill_time": "0:05", "kills_per_hill": "2.18", "damage_per_hill": "267.72"},
+    {"player_index": "6", "name": "SHOTZZY",  "kills_deaths": "22/38", "assists": "7",  "non_traded_kills": "12", "highest_streak": "2", "damage": "2881", "hill_time": "0:38", "average_hill_time": "0:03", "objective_kills": "6",  "contested_hill_time": "0:13", "kills_per_hill": "1.90", "damage_per_hill": "247.45"},
+    {"player_index": "7", "name": "MERCULES", "kills_deaths": "29/32", "assists": "12", "non_traded_kills": "22", "highest_streak": "5", "damage": "4589", "hill_time": "1:13", "average_hill_time": "0:06", "objective_kills": "13", "contested_hill_time": "0:07", "kills_per_hill": "2.63", "damage_per_hill": "414.00"},
+    {"player_index": "8", "name": "DASHY",    "kills_deaths": "21/29", "assists": "12", "non_traded_kills": "13", "highest_streak": "4", "damage": "3580", "hill_time": "0:59", "average_hill_time": "0:05", "objective_kills": "5",  "contested_hill_time": "0:02", "kills_per_hill": "1.90", "damage_per_hill": "325.45"}
+  ]
+}

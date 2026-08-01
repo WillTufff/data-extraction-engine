@@ -1,0 +1,19 @@
+{
+  "description": "Ground-truth labelling of the post-map Overload box score at t=3940s. Adds the '%' glyph, which appears only in this mode's accuracy column. The rendered cell reads e.g. '31 %' with a space; segmentation drops whitespace, so the expected text is '31%'.",
+  "timestamp": 3940,
+  "mode": "overload",
+  "map": "SCAR",
+  "team_a": "FAZE VEGAS",
+  "team_b": "OPTIC TEXAS",
+  "final_score": [4, 3],
+  "rows": [
+    {"player_index": "1", "name": "ABUZAH",   "kills_deaths": "42/20", "assists": "15", "non_traded_kills": "32", "highest_streak": "6", "damage": "4649", "overloads": "2", "carrier_kills": "5", "kills_as_carrier": "1", "highest_multikill": "3", "accuracy": "31%", "score": "6500"},
+    {"player_index": "2", "name": "DRAZAH",   "kills_deaths": "32/23", "assists": "9",  "non_traded_kills": "23", "highest_streak": "5", "damage": "3382", "overloads": "1", "carrier_kills": "4", "kills_as_carrier": "0", "highest_multikill": "2", "accuracy": "32%", "score": "4670"},
+    {"player_index": "3", "name": "04",       "kills_deaths": "21/25", "assists": "10", "non_traded_kills": "15", "highest_streak": "4", "damage": "2685", "overloads": "1", "carrier_kills": "1", "kills_as_carrier": "1", "highest_multikill": "2", "accuracy": "29%", "score": "3845"},
+    {"player_index": "4", "name": "SIMP",     "kills_deaths": "21/25", "assists": "14", "non_traded_kills": "15", "highest_streak": "4", "damage": "2937", "overloads": "0", "carrier_kills": "3", "kills_as_carrier": "1", "highest_multikill": "2", "accuracy": "32%", "score": "4070"},
+    {"player_index": "5", "name": "HUKE",     "kills_deaths": "24/26", "assists": "5",  "non_traded_kills": "16", "highest_streak": "3", "damage": "3252", "overloads": "1", "carrier_kills": "3", "kills_as_carrier": "0", "highest_multikill": "2", "accuracy": "29%", "score": "3730"},
+    {"player_index": "6", "name": "SHOTZZY",  "kills_deaths": "23/32", "assists": "10", "non_traded_kills": "12", "highest_streak": "3", "damage": "3159", "overloads": "1", "carrier_kills": "2", "kills_as_carrier": "0", "highest_multikill": "2", "accuracy": "36%", "score": "3845"},
+    {"player_index": "7", "name": "MERCULES", "kills_deaths": "21/30", "assists": "7",  "non_traded_kills": "13", "highest_streak": "3", "damage": "2719", "overloads": "1", "carrier_kills": "3", "kills_as_carrier": "0", "highest_multikill": "2", "accuracy": "8%",  "score": "3520"},
+    {"player_index": "8", "name": "DASHY",    "kills_deaths": "23/28", "assists": "9",  "non_traded_kills": "12", "highest_streak": "4", "damage": "3779", "overloads": "0", "carrier_kills": "1", "kills_as_carrier": "0", "highest_multikill": "2", "accuracy": "34%", "score": "3360"}
+  ]
+}

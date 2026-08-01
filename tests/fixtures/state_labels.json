@@ -1,0 +1,42 @@
+{
+  "source": "2026 CDL Champs Grand Finals, OpTic Texas vs FaZe Vegas",
+  "provenance": [
+    "REPLAY positives and LIVE negatives were confirmed by eye from rendered",
+    "frames. The negatives are the frames that previously defeated colour-only",
+    "tag detection: 2520 carries the orange SCUF sponsor bug, the rest are warm",
+    "gameplay content (wood interiors, autumn foliage) in Search & Destroy.",
+    "BOXSCORE and SERIES timestamps are the anchors the box-score parser was",
+    "validated against.",
+    "CAVEAT: this set was assembled by reviewing frames the classifier had",
+    "already grouped, not by blind sampling. It bounds precision well but",
+    "cannot bound recall -- a state the classifier never flags would leave no",
+    "trace here. The full-VOD timeline in tools/validate_state.py is what",
+    "actually tests for that, which is why per-state recall below is reported",
+    "as provisional."
+  ],
+  "labels": [
+    {"t": 760, "state": "boxscore", "note": "map 1 post-map box score"},
+    {"t": 840, "state": "replay", "note": "HIGHLIGHTS tag, CDL Overload"},
+    {"t": 2520, "state": "live", "note": "SCUF sponsor bug in the tag band"},
+    {"t": 2800, "state": "boxscore", "note": "map 2 post-map box score"},
+    {"t": 3940, "state": "boxscore", "note": "map 3 post-map box score"},
+    {"t": 4020, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 4920, "state": "boxscore", "note": "map 4 post-map box score"},
+    {"t": 4980, "state": "series", "note": "series overview"},
+    {"t": 5460, "state": "replay", "note": "REPLAY tag, SnD defuse"},
+    {"t": 5640, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 5820, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 7320, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 7350, "state": "boxscore", "note": "map 5 post-map box score"},
+    {"t": 7380, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 7860, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 8100, "state": "live", "note": "warm gameplay content"},
+    {"t": 8230, "state": "boxscore", "note": "map 6 post-map box score"},
+    {"t": 8580, "state": "replay", "note": "HIGHLIGHTS tag"},
+    {"t": 8700, "state": "live", "note": "warm gameplay content"},
+    {"t": 8940, "state": "live", "note": "warm gameplay content"},
+    {"t": 9120, "state": "live", "note": "warm gameplay content"},
+    {"t": 9180, "state": "replay", "note": "REPLAY tag"},
+    {"t": 9540, "state": "live", "note": "warm gameplay content"}
+  ]
+}
