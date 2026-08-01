@@ -101,7 +101,7 @@ def score_resets(header_runs: list[dict]) -> list[float]:
     Tested on the pair, not on each side separately: a side that ends a map
     already at 0 never steps, so it never witnesses on its own.
     """
-    series = _pair_series(header_runs, "score_left", "score_right")
+    series = pair_series(header_runs, "score_left", "score_right")
     return [
         round(start)
         for (_, _, before), (start, _, after) in zip(series, series[1:])
@@ -131,7 +131,7 @@ def _until_score_falls(header_runs: list[dict], start: float,
     """Truncate a span at the first frame where the map score goes backwards."""
     inside = [
         (t0, pair) for t0, _, pair
-        in _pair_series(header_runs, "score_left", "score_right")
+        in pair_series(header_runs, "score_left", "score_right")
         if start <= t0 <= end
     ]
     best = (0, 0)
@@ -260,7 +260,7 @@ def _field_runs(header_runs: list[dict], name: str) -> list[dict]:
     )
 
 
-def _pair_series(header_runs: list[dict], left_field: str,
+def pair_series(header_runs: list[dict], left_field: str,
                  right_field: str) -> list[tuple[float, float, tuple[int, int]]]:
     """(start, end, (left, right)) for a two-sided header field.
 
@@ -296,7 +296,7 @@ def _pip_series(header_runs: list[dict]) -> list[tuple[float, float, tuple[int, 
     """The series score over time, as a staircase that only ever goes up."""
     out: list[tuple[float, float, tuple[int, int]]] = []
     best = (0, 0)
-    for start, end, pips in _pair_series(header_runs, "maps_left", "maps_right"):
+    for start, end, pips in pair_series(header_runs, "maps_left", "maps_right"):
         if pips[0] < best[0] or pips[1] < best[1]:
             continue
         best = pips

@@ -50,6 +50,23 @@ def series_roster(runs: list[dict]) -> dict[int, str]:
     return {number: names.most_common(1)[0][0] for number, names in votes.items()}
 
 
+def player_sides(runs: list[dict]) -> dict[str, str]:
+    """Name -> which panel they appear on, weighted by frames seen.
+
+    Read off the runs rather than assumed from the numbering, on the same
+    argument `series_roster` makes: which four players are on the left is a
+    thing the broadcast draws, and reading it costs nothing. Anything grouping
+    killfeed victims by team needs this -- `rounds.py` most of all, where "four
+    victims on one side" is the difference between a wipe and a coincidence.
+    """
+    votes: dict[str, Counter] = defaultdict(Counter)
+    for run in runs:
+        name = run["value"].get("name")
+        if name:
+            votes[name][run["side"]] += run["samples"]
+    return {name: seen.most_common(1)[0][0] for name, seen in votes.items()}
+
+
 def split_foreign(runs: list[dict], roster: dict[int, str] | None = None):
     """Partition runs into (this series, some other one)."""
     roster = roster or series_roster(runs)

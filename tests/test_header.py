@@ -41,6 +41,13 @@ def info():
     return video.probe(SOURCE) if SOURCE else None
 
 
+@pytest.fixture(scope="module")
+def header_runs():
+    from cdlvision import scoreboard_runs
+
+    return scoreboard_runs.load(ROOT / "tests/fixtures/header_runs.jsonl.gz")
+
+
 def _spec(path: Path) -> dict:
     return json.loads(path.read_text())
 
@@ -150,11 +157,17 @@ def test_a_countdown_must_have_four_tokens():
 
 
 def test_seconds_parse_only_as_two_digits():
-    assert hd._seconds("3:43") == 223
-    assert hd._seconds("0:04") == 4
-    assert hd._seconds("3:4") is None
-    assert hd._seconds("343") is None
-    assert hd._seconds(None) is None
+    assert hd.seconds("3:43") == 223
+    assert hd.seconds("0:04") == 4
+    assert hd.seconds("3:4") is None
+    assert hd.seconds("343") is None
+    assert hd.seconds(None) is None
+    # The final thirty seconds are drawn as a different counter entirely.
+    assert hd.seconds("28.5") == 28.5
+    assert hd.seconds("6.5") == 6.5
+    assert hd.seconds("0.0") == 0
+    assert hd.seconds("28.55") is None
+    assert hd.seconds(".5") is None
 
 
 def test_the_header_bands_at_most_abut():
@@ -170,3 +183,49 @@ def test_the_header_bands_at_most_abut():
             wide = min(ax1, bx1) - max(ax0, bx0) + 1
             tall = min(ay1, by1) - max(ay0, by0) + 1
             assert wide < 2 or tall < 2, f"{a} overlaps {b} by {wide}x{tall}"
+
+
+def test_the_final_thirty_seconds_are_read(header_runs):
+    """The clock below 0:30 is a different counter -- red, seconds and tenths,
+    a decimal point for a colon. It read as None everywhere until the reader
+    learned it, and absence looked legitimate because a clock that is not drawn
+    is exactly what the end of a round looks like."""
+    clock = [r for r in header_runs if r["field"] == "clock"]
+    values = [hd.seconds(r["value"]) for r in clock]
+    below = [v for v in values if v is not None and v < 30]
+    unread = sum(r["samples"] for r in clock if r["value"] is None)
+    assert len(below) > 2000
+    assert unread < 100
+    # Every sub-30 reading is the tenths form, and every tenths form is sub-30.
+    for run in clock:
+        if isinstance(run["value"], str) and "." in run["value"]:
+            assert hd.seconds(run["value"]) < 30
+
+
+@needs_vod
+def test_the_red_counter_reads_and_the_white_one_is_untouched(reader, info):
+    """Both formats off real frames. The white readings are the regression
+    guard: the red path is chosen by colour before any matching, so it must
+    never see a white band."""
+    for t, want in ((1958.0, "28.5"), (1962.0, "24.5"), (1980.0, "6.5"),
+                    (1986.0, "0.5"), (6545.0, "22.2")):
+        frame = video.frame_at(SOURCE, t, info)
+        assert reader.read_clock(frame)[0] == want, t
+    for t, want in ((1950.8, "0:35"), (2450.0, "0:38"), (100.0, "4:27"),
+                    (6600.0, "1:24")):
+        frame = video.frame_at(SOURCE, t, info)
+        assert reader.read_clock(frame)[0] == want, t
+
+
+@needs_vod
+def test_redness_separates_the_two_formats_with_room_to_spare(info):
+    """-12..-5 for white against up to 98 for red, and the cut at 40 sits in
+    the gap. Colour chooses the reader; the bitmaps still decide the value."""
+    white = [1950.8, 2450.0, 100.0, 4200.0, 3300.0]
+    red = [1958.0, 1962.0, 1980.0, 6545.0, 9645.0]
+    got = {}
+    for t in white + red:
+        band = hd.region(video.frame_at(SOURCE, t, info), "clock")
+        got[t] = hd.redness(band)
+    assert max(got[t] for t in white) < hd.REDNESS_CUT
+    assert min(got[t] for t in red) > hd.REDNESS_CUT

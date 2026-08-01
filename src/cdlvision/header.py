@@ -148,6 +148,83 @@ def tokens(
 COLON_MAX_WIDTH = 5
 COLON_MAX_HEIGHT = 0.8
 
+# The final thirty seconds are a third counter, not a late state of the clock.
+# It renders red rather than white, counts seconds and tenths rather than
+# minutes and seconds, separates them with a decimal point rather than a colon,
+# and is two or three digits wide rather than three: "28.5", "6.5". Its digits
+# are the *same* 18px font cut as the clock's -- measured, the existing clock
+# atlas matches them at distance 1 to 15 against a limit of 30 -- so this needs
+# no atlas of its own, only its own ink and its own token rule.
+REDNESS_CUT = 40          # white scores -12..-5, this counter up to 98
+REDNESS_MARGIN = 25       # above the band median, to find the lit pixels
+REDNESS_MIN_PIXELS = 20
+TENTHS_INK_FRACTION = 0.40
+TENTHS_MIN_DIGIT_HEIGHT = 10
+TENTHS_DIGITS = (2, 3)
+RAMP_MIN_CONTRAST = 30
+
+
+def redness(band: np.ndarray) -> float | None:
+    """How red the band's bright pixels are: R minus the larger of B and G.
+
+    What tells the two clock formats apart, and it is not a close call. The
+    ordinary white clock scores -12 to -5 over the whole VOD; the final-thirty
+    counter scores up to 98. The cut sits in an empty gap 40 wide.
+
+    This is colour used the way this project permits it -- as a prefilter that
+    chooses *which* reader runs, with the bitmaps still deciding what the glyphs
+    say. It is not colour deciding a value.
+    """
+    import cv2
+
+    gray = cv2.cvtColor(band, cv2.COLOR_BGR2GRAY)
+    lit = gray > np.median(gray) + REDNESS_MARGIN
+    if lit.sum() < REDNESS_MIN_PIXELS:
+        return None
+    blue, green, red = (band[..., i][lit].mean() for i in range(3))
+    return float(red - max(blue, green))
+
+
+def ramp_ink(band: np.ndarray, fraction: float = TENTHS_INK_FRACTION):
+    """Binarise at a fraction of the band's own background-to-glyph ramp.
+
+    The fixed `INK_THRESHOLD` of 150 is right for white glyphs and useless for
+    these: the red ones peak at 142 and vanish entirely. Cutting relative to what
+    the band actually contains is the same reasoning `killfeed.value_ink` and
+    `scoreboard.RowInk` already use, for the same reason -- an absolute cut
+    encodes an assumption about brightness that the broadcast is free to break.
+    """
+    import cv2
+
+    gray = cv2.cvtColor(band, cv2.COLOR_BGR2GRAY).astype(int)
+    background, peak = float(np.median(gray)), float(gray.max())
+    if peak - background < RAMP_MIN_CONTRAST:
+        return None
+    return gray > background + fraction * (peak - background)
+
+
+def tenths_tokens(mask, min_height: int = TENTHS_MIN_DIGIT_HEIGHT):
+    """The digits of an "SS.T" countdown, decimal point discarded.
+
+    Two or three digits, and the separator is *ignored* rather than checked. The
+    first version required it, at the cost of a quarter of the readings: the
+    decimal point carries three or four ink pixels and drops out at the least
+    provocation, which is the same trap the spectated panel's colon set when a
+    min-ink filter of 12 ate its eight pixels. Anything tall enough to be a digit
+    is a digit; anything shorter is punctuation and is not needed, because the
+    last digit is the tenths by the format's own definition.
+
+    Height is a floor rather than an equality for the same reason. The red glyphs
+    render 17 to 19 px tall depending on how much of the glow clears the cut, and
+    demanding exactly 18 cost 7% of the frames on its own.
+    """
+    if mask is None or not mask.any():
+        return None
+    digits = [g for g in _glyphs(mask, None) if g.shape[0] >= min_height]
+    if not TENTHS_DIGITS[0] <= len(digits) <= TENTHS_DIGITS[1]:
+        return None
+    return digits
+
 
 def clock_tokens(mask: np.ndarray, height: int) -> list[np.ndarray] | None:
     """A countdown band's glyphs as [M, :, S, S], or None.
@@ -227,20 +304,33 @@ class Header:
 
     @property
     def clock_seconds(self) -> int | None:
-        return _seconds(self.clock)
+        return seconds(self.clock)
 
     @property
     def rotation_seconds(self) -> int | None:
-        return _seconds(self.rotation)
+        return seconds(self.rotation)
 
 
-def _seconds(clock: str | None) -> int | None:
-    if not clock or ":" not in clock:
+def seconds(clock: str | None) -> float | None:
+    """Either drawn form of the countdown, in seconds.
+
+    "M:SS" for the ordinary clock and "SS.T" for the final thirty seconds, which
+    the game draws as a different counter entirely. Returns a float because the
+    second form carries tenths; whole seconds come back as whole floats.
+    """
+    if not clock:
+        return None
+    if "." in clock:
+        seconds, _, tenths = clock.partition(".")
+        if not seconds.isdigit() or not tenths.isdigit() or len(tenths) != 1:
+            return None
+        return int(seconds) + int(tenths) / 10
+    if ":" not in clock:
         return None
     minutes, _, rest = clock.partition(":")
     if not minutes.isdigit() or not rest.isdigit() or len(rest) != 2:
         return None
-    return int(minutes) * 60 + int(rest)
+    return float(int(minutes) * 60 + int(rest))
 
 
 class Reader:
@@ -290,7 +380,15 @@ class Reader:
     def read_clock(
         self, frame: np.ndarray, key: str = "clock"
     ) -> tuple[str | None, int]:
-        """A countdown as "M:SS", or None."""
+        """A countdown as "M:SS", or as "SS.T" in the final thirty seconds.
+
+        Which of the two is drawn is decided by colour, before any matching: the
+        counters are white and red and nothing sits between them. Reading the red
+        one with the white one's ink threshold returns an empty mask, which looks
+        exactly like a clock that is not drawn -- and a clock that is not drawn is
+        what the end of a round looks like, which is why 100% unread below 0:30
+        went unnoticed until something needed the value.
+        """
         if key == "clock":
             band, height, atlas = region(frame, "clock"), CLOCK_HEIGHT, self.clock
         else:
@@ -299,9 +397,18 @@ class Reader:
                 ROTATION_X[0] : ROTATION_X[1] + 1,
             ]
             height, atlas = ROTATION_HEIGHT, self.rotation
-        glyphs = clock_tokens(ink(band), height)
-        text, worst = self._read_glyphs(glyphs, atlas, MAX_CLOCK_DISTANCE)
-        if text is None or _seconds(text) is None:
+
+        red = redness(band)
+        if red is not None and red > REDNESS_CUT:
+            glyphs = tenths_tokens(ramp_ink(band))
+            text, worst = self._read_glyphs(glyphs, atlas, MAX_CLOCK_DISTANCE)
+            if text is None or not text.isdigit() or len(text) < 2:
+                return None, worst
+            text = f"{text[:-1]}.{text[-1]}"
+        else:
+            glyphs = clock_tokens(ink(band), height)
+            text, worst = self._read_glyphs(glyphs, atlas, MAX_CLOCK_DISTANCE)
+        if text is None or seconds(text) is None:
             return None, worst
         return text, worst
 

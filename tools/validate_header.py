@@ -45,7 +45,7 @@ def by_field(runs: list[dict], field: str) -> list[dict]:
     (the cache stores them as "M:SS")."""
     if field in ("clock", "rotation"):
         return [
-            {**r, "value": hd._seconds(r["value"])}
+            {**r, "value": hd.seconds(r["value"])}
             for r in sorted(
                 (x for x in runs if x["field"] == field), key=lambda x: x["start"]
             )
